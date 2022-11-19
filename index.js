@@ -7,7 +7,7 @@ app.use('/', require('./routes'));
 
 //setup view engine and set directory to view engine
 app.set('view engine', 'ejs');
-app.set('view', './views')
+app.set('views', './views')
 
 
 app.listen(port, function(err)
