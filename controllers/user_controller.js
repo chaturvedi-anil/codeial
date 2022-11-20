@@ -8,8 +8,6 @@ module.exports.profile=function(req, res)
 
 module.exports.signIn=function(req, res)
 {
-    console.log(req.cookies);
-    res.cookie('user_id', 11);
     return res.render('user_sign_in',
     {
         title:"User SignIN"
@@ -51,5 +49,27 @@ module.exports.create=function(req, res)
 
 module.exports.createSession=function(req, res)
 {
-    
+    //find user
+    User.findOne({email: req.body.email}, function(err, user)
+    {
+        if(err){ console.log('error in finding user in signing in'); return;}
+        
+        //handle user found
+        if(user)
+        {
+            //handle user password which doesn't match
+            if(user.password != req.body.password)
+            {
+                return res.redirect('back');
+            }
+            //handle session creation
+            res.cookie("user_id", user.id);
+            return res.redirect('/users/profile');
+        }
+        else
+        {
+            //handle user not found
+            return res.redirect('back');
+        }
+    });
 }
