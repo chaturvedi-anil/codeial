@@ -1,3 +1,4 @@
+const { model } = require('mongoose');
 const User=require('../models/user');
 module.exports.profile=function(req, res)
 {
@@ -90,4 +91,14 @@ module.exports.createSession=function(req, res)
             return res.redirect('back');
         }
     });
+}
+
+//Sign Out
+module.exports.signOut=function(req, res)
+{
+    if(req.cookies.user_id)
+    {
+        res.clearCookie("user_id");
+        return res.redirect('/users/sign-in');
+    }
 }
