@@ -5,10 +5,12 @@ const app=express();
 const expressLayouts=require('express-ejs-layouts');
 const db=require('./config/mongoose');
 //used for session cookies
-const session=require('express-session');
+const session = require('express-session');
 //used for passport authentication
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-startegy');
+//used for storing session cookie in mongo store 
+const MongoStore = require('connect-mongo');
 
 app.use(express.urlencoded());
 
@@ -24,7 +26,6 @@ app.use(expressLayouts);
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
-
 //setup view engine and set directory to view engine
 app.set('view engine', 'ejs');
 app.set('views', './views')
@@ -39,7 +40,19 @@ app.use(session(
         resave: false,
         cookie:{
             maxAge: (1000 * 60 * 100)
-        }
+        },
+        //mongo store is used to store the session cookie in the db
+        store: MongoStore.create(
+            {
+                //db table url
+                mongoUrl: 'mongodb://localhost/codeial_development',
+                autoRemove: 'disabled'
+            },
+            function(err)
+            {
+                console.log(err || 'connect-mongo setup ok');
+            }
+        )
     }
 ));
 
