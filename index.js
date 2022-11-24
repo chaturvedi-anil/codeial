@@ -11,6 +11,19 @@ const passport=require('passport');
 const passportLocal=require('./config/passport-local-startegy');
 //used for storing session cookie in mongo store 
 const MongoStore = require('connect-mongo');
+const sassmiddleware=require('node-sass-middleware');
+
+//using for sass middleware
+app.use(sassmiddleware
+({
+    src: './assets/scss',
+    dest: './assets/css',
+    //this is for showing error if any comes but it will false in production mode
+    debug: true,
+    //showing code in structure mode
+    outputStyle: 'expanded',
+    prefix: '/css'
+}));
 
 app.use(express.urlencoded());
 
