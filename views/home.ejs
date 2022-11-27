@@ -1,3 +1,12 @@
-
 <link rel="stylesheet" href="/css/home.css">
-    <h1>Codeial / <%= title %></h1>
+<h1>
+    Codeial / <%= title %>
+</h1>
+<section id="feed-posts">
+    <h4>post something</h4>
+    <form action="share-post" id="new-post-form" method="post">
+        <textarea name="content" cols="30" rows="4" placeholder="What is in your mind today..."></textarea>
+        <input type="submit" value="Post">
+    </form>
+</section>
+
