@@ -7,5 +7,6 @@ console.log('router loaded');
 router.get('/', homeController.home);
 //for any request with /users routes, i will give control to /routes/users
 router.use('/users', require('../routes/users'));
-
+//for any request to /posts routes
+router.use('/posts', require('../routes/posts'));
 module.exports=router;
