@@ -4,10 +4,12 @@
 </h1>
 <section id="feed-posts">
     <h4>post something</h4>
-    <form action="/posts/create" id="new-post-form" method="post">
-        <textarea name="content" cols="30" rows="4" placeholder="What is in your mind today..."></textarea>
-        <input type="submit" value="Post">
-    </form>
+    <% if(locals.user){ %>
+        <form action="/posts/create" id="new-post-form" method="post">
+            <textarea name="content" cols="30" rows="4" placeholder="What is in your mind today..."></textarea>
+            <input type="submit" value="Post">
+        </form>
+    <% } %>
     <div id="posts-list-container">
         <ul>
             <% for(post of posts){%>
