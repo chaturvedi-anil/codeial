@@ -1,29 +1,25 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
-const commentSchema= new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
     content:
     {
         type: String,
         required: true
     },
-    //comment belong to a user
     user:
     {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    //comment belong to a post
     post:
     {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
-    }
+    },
 },
 {
     timestamps: true
 });
-
-//creating model for comment
 
 const Comment= mongoose.model('Comment', commentSchema);
 
