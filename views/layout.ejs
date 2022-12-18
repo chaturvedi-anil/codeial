@@ -1,17 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/css/layout.css">
-    <%- style %>
-</head>
-<body>
-    <%- include('_header'); %>
+<html>
+    <head>
+        <title>
+            <%= title  %>
+        </title>
+        <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/footer.css">
 
-    <%- body %>
+        <%- style %>
+        
+    </head>
 
-    <%- include('_footer'); %>
+    <body>
+        <%- include('_header'); %>
+        
+        <main id="layout-main">
+            <%- body %>
 
-    <%- script %>
-</body>
+        </main>
+
+
+        <%- include('_footer'); %>
+
+        <%- script %>
+        
+    </body>
 </html>
