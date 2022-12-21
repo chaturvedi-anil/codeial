@@ -12,6 +12,8 @@ const passportLocal=require('./config/passport-local-startegy');
 //used for storing session cookie in mongo store 
 const MongoStore = require('connect-mongo');
 const sassmiddleware=require('node-sass-middleware');
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
 
 //using for sass middleware
 app.use(sassmiddleware
@@ -75,6 +77,10 @@ app.use(passport.session());
 
 //after adding this line code is giving error
 app.use(passport.setAuthenticatedUser);
+
+//using for flash messages
+app.use(flash());
+app.use(customMware.setFlash);
 
 //uses express router
 app.use('/', require('./routes'));
